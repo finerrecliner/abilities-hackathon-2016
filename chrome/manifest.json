@@ -7,7 +7,7 @@
 
     
     "background": {
-        "scripts": ["sample.js"]
+        "scripts": ["ext.js"]
     },
 
     "browser_action": {
