@@ -1,8 +1,13 @@
+rm final.mp4
 IFS=', ' read -r -a words <<< "$1"
 for word in "${words[@]}"
 do
    first_letter="$(echo $word | head -c 1)"
-   curl -O http://www.handspeak.com/word/$first_letter/$word.mp4
+   err_code=`curl -O http://www.handspeak.com/word/$first_letter/$word.mp4`
+   if [ err_code -ne 0]
+      then
+         echo "This word does not exist..."
+   fi
 done
 
 i=0
