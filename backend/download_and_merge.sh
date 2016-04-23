@@ -1,5 +1,5 @@
 rm final.mp4
-IFS=', ' read -r -a words <<< "$1"
+words=($1)
 for word in "${words[@]}"
 do
    first_letter="$(echo $word | head -c 1)"
