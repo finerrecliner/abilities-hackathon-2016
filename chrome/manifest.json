@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
 
-    "name": "Daves first extension!",
-    "description": "This is just a test",
+    "name": "Handy",
+    "description": "An accessibility extension for translating from text to ASL",
     "version": "1.0",
 
     
@@ -10,14 +10,12 @@
         "scripts": ["ext.js"]
     },
 
-    "browser_action": {
-        "default_icon": "icon.png"
-    },
+    "icons": { "128": "icon128.png" },
 
     "permissions": [
         "contextMenus",
         "tabs",
         "activeTab",
-        "http://ec2-52-32-12-200.us-west-2.compute.amazonaws.com/"
+        "http://899eca95.ngrok.io/"
     ]
 }
