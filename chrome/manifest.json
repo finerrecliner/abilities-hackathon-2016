@@ -17,6 +17,7 @@
     "permissions": [
         "contextMenus",
         "tabs",
-        "activeTab"
+        "activeTab",
+        "http://ec2-52-32-12-200.us-west-2.compute.amazonaws.com/"
     ]
 }
