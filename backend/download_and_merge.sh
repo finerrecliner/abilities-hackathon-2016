@@ -1,5 +1,6 @@
 rm final.mp4
 words=($1)
+echo ${words[*]}
 for word in "${words[@]}"
 do
    first_letter="$(echo $word | head -c 1)"
@@ -19,5 +20,6 @@ done
 
 cat *.mpg > final.mpg
 ffmpeg -i final.mpg -r 20 final.mp4
+ffmpeg -i final.mp4 -vf scale=920:640 final.mp4
 
 rm *.mpg   
