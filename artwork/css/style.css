@@ -9,6 +9,7 @@
 body {
 	width: 100%;
 	background: #ECEFF1;
+	border-top: 6px solid #00BCD4;
 	color: rgba(0,0,0,.27);
 	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 12px;
@@ -48,7 +49,8 @@ footer .icon img {
 .vidwrap video {
 	margin: 2% auto 0;
 	width: 80%;
-	border-radius: 6px;
+	border-radius: 4px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 /* media queries */
