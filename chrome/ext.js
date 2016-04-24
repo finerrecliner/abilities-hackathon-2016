@@ -12,7 +12,7 @@ function menuOnClick(info, tab) {
         }
     }
 
-    xhttp.open("POST", "http://899eca95.ngrok.io/?words=" + info.selectionText, true);
+    xhttp.open("POST", "http://a88ba2de.ngrok.io/?words=" + info.selectionText, true);
     xhttp.send();
 
     chrome.tabs.getSelected(null, function(tab) {
