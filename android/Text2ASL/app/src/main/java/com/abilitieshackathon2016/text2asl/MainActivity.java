@@ -25,7 +25,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+
 public class MainActivity extends AppCompatActivity {
+
+    private boolean isRedirected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            webview.loadUrl(urlWithParams);
+            startWebView(webview, url);
         }
     }
 
@@ -134,5 +139,54 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return response;
+    }
+
+    private void startWebView(WebView webView,String url) {
+
+        webView.setWebViewClient(new WebViewClient() {
+            ProgressDialog progressDialog;
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                isRedirected = true;
+                return false;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                isRedirected = false;
+            }
+
+            public void onLoadResource(WebView view, String url) {
+                if (!isRedirected) {
+                    if (progressDialog == null) {
+                        progressDialog = new ProgressDialog(MainActivity.this);
+                        progressDialog.setMessage("Loading...");
+                        progressDialog.show();
+                    }
+                }
+
+            }
+
+            public void onPageFinished(WebView view, String url) {
+                try {
+                    isRedirected = true;
+
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                        progressDialog = null;
+                    }
+
+
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+
+        });
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(url);
     }
 }
