@@ -3,6 +3,11 @@ function menuOnClick(info, tab) {
 
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
+
+            chrome.tabs.getSelected(null, function(tab) {
+                    chrome.tabs.executeScript(tab.id, {"code" : 'document.body.style.cursor = "auto";'});
+            });
+
             chrome.tabs.create({url: xhttp.responseText});
         }
     }
@@ -10,7 +15,9 @@ function menuOnClick(info, tab) {
     xhttp.open("POST", "http://899eca95.ngrok.io/?words=" + info.selectionText, true);
     xhttp.send();
 
-    console.log(info.selectionText);
+    chrome.tabs.getSelected(null, function(tab) {
+            chrome.tabs.executeScript(tab.id, {"code" : 'document.body.style.cursor = "wait";'});
+    });
 }
 
 chrome.contextMenus.create({"title": "Sign with Handy", 
